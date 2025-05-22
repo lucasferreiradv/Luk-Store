@@ -1,0 +1,443 @@
+/* Reset básico para evitar inconsistências entre navegadores */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'arial';
+}
+
+/* Estilo de fundo cinza */
+.gray-background {
+    background-color: #2c2c2c;
+}
+
+/* Layout de colunas para produtos */
+.cols.cols-3, .cols.cols-4 {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+/* Estilo e efeito hover para imagens de produtos */
+.product-img, .product img {
+    width: 250px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.product-img:hover, .product img:hover {
+    transform: scale(1.05);
+}
+
+/* Título das seções */
+.section-title {
+    text-align: center;
+    font-size: 1.7rem;
+    margin-bottom: 4px;
+    margin-top: 30px;
+}
+
+/* Linha decorativa abaixo do título */
+.subtitle-underline {
+    width: 90px;
+    height: 4px;
+    background-color: red;
+    margin: 4px auto 12px auto;
+    border-radius: 2px;
+}
+
+/* Estilo de cada produto */
+.product {
+    color: #2c2c2c;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nome do produto */
+.product-name {
+    font-weight: 200;
+    margin-top: 0.4rem;
+}
+
+/* Nota do produto */
+.rate {
+    color: crimson;
+    font-size: 1.3rem;
+}
+
+/* Preço do produto */
+.product-price span {
+    font-weight: 600;
+}
+
+/* Container do conteúdo do header */
+.header-inner-content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Navbar - barra de navegação */
+.navbar {
+    background-color: #2c2c2c;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    box-shadow: 10px 0px 10px #2c2c2c;
+    z-index: 99;
+}
+
+.navbar > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* Logo da marca */
+.logo {
+    color: #dc143c;
+}
+
+.logo span {
+    color: #fff;
+}
+
+/* Navegação principal */
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+/* Ícones da navbar */
+.nav-icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icon-container img {
+    width: 30px;
+    cursor: pointer;
+}
+
+.nav-icon-container img:first-child {
+    margin-right: 1rem;
+}
+
+nav ul li {
+    color: white;
+    margin-right: 1.5rem;
+    cursor: pointer;
+}
+
+nav ul li:hover {
+    transform: translateY(-5px);
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+/* Botão de menu para mobile */
+.menu-button {
+    display: none;
+    cursor: pointer;
+}
+
+/* Header - topo do site */
+header {
+    background-image: radial-gradient(#ffff, #c7c7c7);
+}
+
+/* Parte inferior do header */
+.header-bottom-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.header-bottom-side-left {
+    flex-basis: 100rem;
+}
+
+.header-bottom-side-left h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.header-bottom-side-left p {
+    line-height: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Botão call-to-action */
+.header-bottom-side-left button {
+    background-color: #dc143c;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem 2.8rem;
+    border-radius: 9999px;
+    color: #fff;
+    font-weight: 100;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.header-bottom-side-left button:hover {
+    background-color: red;
+}
+
+.header-bottom-side-right {
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-bottom-side-right img {
+    width: 125%;
+}
+
+/* Estilo do conteúdo principal */
+main {
+    background-color: #ebebeb;
+}
+
+/* Seção exclusiva */
+.exclusive-container {
+    color: #fff;
+    flex-direction: row-reverse;
+    padding: 4rem 1rem;
+}
+
+.exclusive-container img {
+    max-width: 450px;
+}
+
+/* ---------------------- Testimonials ---------------------- */
+.testimonials {
+    display: flex;
+    padding: 4rem 1rem;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    background-color: #fff;
+}
+
+.testimonial {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    flex-basis: 30%;
+    box-shadow: 0 0 15px #afafaf;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.testimonial:hover {
+    transform: translateY(-5px);
+}
+
+.testimonial p {
+    margin: 5px 0;
+}
+
+.testimonial p:first-child {
+    font-weight: bold;
+    font-size: 5rem;
+    color: #dc143c;
+    margin-top: 3rem;
+    line-height: 2rem;
+}
+
+.testimonial p:last-child {
+    font-weight: bold;
+}
+
+/* ---------------------- Footer ---------------------- */
+.footer-content {
+    display: flex;
+    align-items: center;
+    color: #8f8f8f;
+    padding: 4rem 1rem;
+    gap: 2rem;
+}
+
+/* Opções de download */
+.download-options > * {
+    margin: 1rem 0;
+}
+
+.download-options > p:first-child {
+    font-weight: bold;
+    color: #fff;
+}
+
+.download-options > div {
+    display: flex;
+}
+
+.download-options > div img {
+    width: 130px;
+}
+
+/* Logo no footer */
+.logo-footer {
+    text-align: center;
+}
+
+/* Links no footer */
+.links-footer h3 {
+    color: #fff;
+    margin-bottom: 0.8rem;
+}
+
+.links-footer ul {
+    list-style: none;
+}
+
+.links-footer ul li {
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+/* Copyright */
+.copyright {
+    color: #ffff;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+/* ---------------------- Responsividade Geral ---------------------- */
+@media (max-width: 800px) {
+    .section-title {
+        font-size: 1rem;
+    }
+
+    /* Ajuste das colunas em telas menores */
+    .cols-3, .cols-4 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-name, .product-price, .rate {
+        max-height: 1rem;
+        overflow: hidden;
+        font-size: 0.8rem;
+    }
+
+    /* Ajuste da seção exclusiva */
+    .exclusive-container {
+        flex-direction: column-reverse;
+    }
+
+    .exclusive-container img {
+        margin-bottom: 4rem;
+    }
+
+    /* Ajuste testimonials */
+    .testimonials {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testimonial {
+        flex-basis: 80%;
+        margin-bottom: 1.2rem;
+    }
+
+    /* Ajuste do footer */
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-content > div {
+        padding: 1rem;
+    }
+
+    .download-options > div {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .download-options > div img {
+        width: 120px;
+        margin: 5px;
+    }
+
+    .copyright {
+        font-size: 0.8rem;
+    }
+}
+
+/* ---------------------- Responsividade - Mobile ---------------------- */
+@media (max-width: 768px) {
+    /* Menu hamburguer */
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: #2c2c2c;
+        position: absolute;
+        top: 50px;
+        right: 100px;
+        width: 300px;
+        padding: 1rem;
+        box-shadow: 0 10px 8px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    /* Ajuste header mobile */
+    .header-bottom-side {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-bottom-side-left {
+        flex-basis: auto;
+        padding: 1rem;
+    }
+
+    .header-bottom-side-left h2 {
+        font-size: 2rem;
+    }
+
+    .header-bottom-side-left p {
+        font-size: 1rem;
+        line-height: 1.4rem;
+    }
+
+    .header-bottom-side-left button {
+        padding: 0.6rem 2rem;
+        font-size: 1rem;
+    }
+
+    .header-bottom-side-right {
+        flex-basis: auto;
+        margin-top: 1.5rem;
+    }
+
+    .header-bottom-side-right img {
+        width: 90%;
+        max-width: 300px;
+    }
+}
