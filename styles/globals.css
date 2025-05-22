@@ -1,4 +1,4 @@
-/* Reset básico para evitar inconsistências entre navegadores */
+/* ====== Reset e Configurações Globais ====== */
 * {
     box-sizing: border-box;
     padding: 0;
@@ -6,15 +6,15 @@
 }
 
 body {
-    font-family: 'arial';
+    font-family: 'Arial', sans-serif;
 }
 
-/* Estilo de fundo cinza */
+/* ====== Utilitários ====== */
 .gray-background {
     background-color: #2c2c2c;
 }
 
-/* Layout de colunas para produtos */
+/* ====== Layout de Colunas ====== */
 .cols.cols-3, .cols.cols-4 {
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* Estilo e efeito hover para imagens de produtos */
+/* ====== Produtos ====== */
 .product-img, .product img {
     width: 250px;
     height: auto;
@@ -34,15 +34,34 @@ body {
     transform: scale(1.05);
 }
 
-/* Título das seções */
+.product {
+    color: #2c2c2c;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-weight: 200;
+    margin-top: 0.4rem;
+}
+
+.rate {
+    color: crimson;
+    font-size: 1.3rem;
+}
+
+.product-price span {
+    font-weight: 600;
+}
+
+/* ====== Títulos e Subtítulos ====== */
 .section-title {
     text-align: center;
     font-size: 1.7rem;
-    margin-bottom: 4px;
-    margin-top: 30px;
+    margin: 30px 0 4px 0;
 }
 
-/* Linha decorativa abaixo do título */
 .subtitle-underline {
     width: 90px;
     height: 4px;
@@ -51,38 +70,12 @@ body {
     border-radius: 2px;
 }
 
-/* Estilo de cada produto */
-.product {
-    color: #2c2c2c;
-    margin-bottom: 0.5rem;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Nome do produto */
-.product-name {
-    font-weight: 200;
-    margin-top: 0.4rem;
-}
-
-/* Nota do produto */
-.rate {
-    color: crimson;
-    font-size: 1.3rem;
-}
-
-/* Preço do produto */
-.product-price span {
-    font-weight: 600;
-}
-
-/* Container do conteúdo do header */
+/* ====== Cabeçalho ====== */
 .header-inner-content {
     max-width: 1400px;
     margin: 0 auto;
 }
 
-/* Navbar - barra de navegação */
 .navbar {
     background-color: #2c2c2c;
     padding: 1rem;
@@ -99,7 +92,6 @@ body {
     position: relative;
 }
 
-/* Logo da marca */
 .logo {
     color: #dc143c;
 }
@@ -108,26 +100,10 @@ body {
     color: #fff;
 }
 
-/* Navegação principal */
 nav ul {
     display: flex;
     list-style: none;
     align-items: center;
-}
-
-/* Ícones da navbar */
-.nav-icon-container {
-    display: flex;
-    align-items: center;
-}
-
-.nav-icon-container img {
-    width: 30px;
-    cursor: pointer;
-}
-
-.nav-icon-container img:first-child {
-    margin-right: 1rem;
 }
 
 nav ul li {
@@ -142,18 +118,30 @@ nav ul li:hover {
     font-weight: bold;
 }
 
-/* Botão de menu para mobile */
+.nav-icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icon-container img {
+    width: 30px;
+    cursor: pointer;
+}
+
+.nav-icon-container img:first-child {
+    margin-right: 1rem;
+}
+
 .menu-button {
     display: none;
     cursor: pointer;
 }
 
-/* Header - topo do site */
+/* ====== Header Bottom ====== */
 header {
-    background-image: radial-gradient(#ffff, #c7c7c7);
+    background-image: radial-gradient(#fff, #c7c7c7);
 }
 
-/* Parte inferior do header */
 .header-bottom-side {
     display: flex;
     align-items: center;
@@ -175,7 +163,6 @@ header {
     margin-bottom: 1.5rem;
 }
 
-/* Botão call-to-action */
 .header-bottom-side-left button {
     background-color: #dc143c;
     border: none;
@@ -203,12 +190,12 @@ header {
     width: 125%;
 }
 
-/* Estilo do conteúdo principal */
+/* ====== Main ====== */
 main {
     background-color: #ebebeb;
 }
 
-/* Seção exclusiva */
+/* ====== Seção Exclusiva ====== */
 .exclusive-container {
     color: #fff;
     flex-direction: row-reverse;
@@ -219,12 +206,12 @@ main {
     max-width: 450px;
 }
 
-/* ---------------------- Testimonials ---------------------- */
+/* ====== Depoimentos ====== */
 .testimonials {
     display: flex;
-    padding: 4rem 1rem;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    padding: 4rem 1rem;
     margin-top: 2rem;
     background-color: #fff;
 }
@@ -263,7 +250,7 @@ main {
     font-weight: bold;
 }
 
-/* ---------------------- Footer ---------------------- */
+/* ====== Rodapé ====== */
 .footer-content {
     display: flex;
     align-items: center;
@@ -272,7 +259,6 @@ main {
     gap: 2rem;
 }
 
-/* Opções de download */
 .download-options > * {
     margin: 1rem 0;
 }
@@ -290,12 +276,10 @@ main {
     width: 130px;
 }
 
-/* Logo no footer */
 .logo-footer {
     text-align: center;
 }
 
-/* Links no footer */
 .links-footer h3 {
     color: #fff;
     margin-bottom: 0.8rem;
@@ -310,20 +294,20 @@ main {
     cursor: pointer;
 }
 
-/* Copyright */
 .copyright {
-    color: #ffff;
+    color: #fff;
     padding: 2rem 0;
     text-align: center;
 }
 
-/* ---------------------- Responsividade Geral ---------------------- */
+/* ====== Responsividade ====== */
+
+/* Telas até 800px */
 @media (max-width: 800px) {
     .section-title {
         font-size: 1rem;
     }
 
-    /* Ajuste das colunas em telas menores */
     .cols-3, .cols-4 {
         flex-direction: column;
         align-items: center;
@@ -335,7 +319,6 @@ main {
         font-size: 0.8rem;
     }
 
-    /* Ajuste da seção exclusiva */
     .exclusive-container {
         flex-direction: column-reverse;
     }
@@ -344,7 +327,6 @@ main {
         margin-bottom: 4rem;
     }
 
-    /* Ajuste testimonials */
     .testimonials {
         flex-direction: column;
         align-items: center;
@@ -355,7 +337,6 @@ main {
         margin-bottom: 1.2rem;
     }
 
-    /* Ajuste do footer */
     .footer-content {
         flex-direction: column;
         align-items: center;
@@ -367,7 +348,6 @@ main {
     }
 
     .download-options > div {
-        display: flex;
         justify-content: center;
         flex-wrap: wrap;
     }
@@ -382,9 +362,8 @@ main {
     }
 }
 
-/* ---------------------- Responsividade - Mobile ---------------------- */
+/* Telas até 768px */
 @media (max-width: 768px) {
-    /* Menu hamburguer */
     nav ul {
         display: none;
         flex-direction: column;
@@ -406,7 +385,6 @@ main {
         display: block;
     }
 
-    /* Ajuste header mobile */
     .header-bottom-side {
         flex-direction: column;
         text-align: center;
@@ -440,4 +418,7 @@ main {
         width: 90%;
         max-width: 300px;
     }
+
+    
+    
 }

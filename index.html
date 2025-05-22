@@ -2,24 +2,132 @@
 <html lang="pt_BR">
 <head>
     <meta charset="UTF-8">
-    <!-- Ícone da aba do navegador -->
     <link rel="website fav icon" href="./images/images/lukstore.png" type="png">
-    
-    <!-- Responsividade -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Luk Store | Melhores ofertas e menores preços!</title>
-    
-    <!-- Estilo global -->
+
     <link rel="stylesheet" href="/styles/globals.css">
-    
+
     <style>
-        /* Estilo adicional pode ser inserido aqui */
+        /* Personalização do "Adicionar ao Carrinho" e compras */
+        
+        .cart-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .cart-modal {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .cart-modal h2 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-details p {
+            margin: 0;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .cart-item-details .cart-item-price {
+            font-weight: bold;
+            color: #e53935; /* Uma cor que se destaca para o preço */
+            margin-top: 5px;
+        }
+
+        .cart-total {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+
+        .close-button:hover {
+            color: #333;
+        }
+
+        .add-to-cart-button {
+            background-color: #e53935; /* Azul */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-button:hover {
+            background-color: #e53935; /* Azul mais escuro ao passar o mouse */
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navbar / Menu de navegação -->
     <div class="navbar">
         <div class="header-inner-content">
             <h1 class="logo">LUK<span>STORE</span></h1>
@@ -32,14 +140,16 @@
                     <li>Conta</li>
                 </ul>
             </nav>
+
             <div class="nav-icon-container">
-                <img src="/images/images/cart.png" alt="Carrinho" />
-                <img src="/images/images/menu.png" class="menu-button" alt="Menu" />
+                <a href="#" class="cart-link" id="cart-icon"> 
+                    <img src="/images/images/cart.png" alt="Carrinho de Compras">
+                </a>
+                <img src="/images/images/menu.png" alt="Menu" class="menu-button">
             </div>
         </div>
     </div>
 
-    <!-- Cabeçalho / Banner principal -->
     <header>
         <div class="header-inner-content">
             <div class="header-bottom-side">
@@ -59,10 +169,7 @@
         </div>
     </header>
 
-    <!-- Conteúdo principal -->
     <main>
-
-        <!-- Seção de produtos em destaque -->
         <div class="gray-background">
             <div class="page-inner-content">
                 <div class="cols cols-3">
@@ -79,121 +186,125 @@
             </div>
         </div>
 
-        <!-- Seção Produtos Selecionados -->
         <div class="page-inner-content">
             <h3 class="section-title">Produtos Selecionados</h3>
             <div class="subtitle-underline"></div>
 
             <div class="cols cols-4">
-                <!-- Produto 1 -->
-                <div class="product">
+                <div class="product" data-product-id="1" data-name="Combo Gamer Meetion" data-price="149.99" data-image="/images/images/products/product-4.png">
                     <img src="/images/images/products/product-4.png" alt="Combo Gamer Meetion" />
                     <p class="product-name">Combo Gamer Meetion</p>
                     <p class="rate">&#9733;&#9734;&#9734;&#9734;&#9734;</p>
                     <p class="product-price">149,99 <span>R$</span></p>
+                    <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                 </div>
 
-                <!-- Produto 2 -->
-                <div class="product">
+                <div class="product" data-product-id="2" data-name="Geforce GTX 1650" data-price="1132.41" data-image="/images/images/products/product-5.png">
                     <img src="/images/images/products/product-5.png" alt="Geforce GTX 1650" />
                     <p class="product-name">Geforce GTX 1650</p>
                     <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                     <p class="product-price">1132,41 <span>R$</span></p>
+                    <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                 </div>
 
-                <!-- Produto 3 -->
-                <div class="product">
+                <div class="product" data-product-id="3" data-name="Controle DualSense PS5" data-price="420.00" data-image="/images/images/products/product-6.png">
                     <img src="/images/images/products/product-6.png" alt="Controle DualSense PS5" />
                     <p class="product-name">Controle DualSense PS5</p>
                     <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                     <p class="product-price">420,00 <span>R$</span></p>
+                    <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                 </div>
 
-                <!-- Produto 4 -->
-                <div class="product">
+                <div class="product" data-product-id="4" data-name="Cadeira Gamer Mymax Mx5" data-price="631.25" data-image="/images/images/products/product-7.png">
                     <img src="/images/images/products/product-7.png" alt="Cadeira Gamer Mymax Mx5" />
                     <p class="product-name">Cadeira Gamer Mymax Mx5</p>
                     <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
                     <p class="product-price">631,25 <span>R$</span></p>
+                    <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                 </div>
             </div>
 
-            <!-- Seção Últimos Produtos -->
             <div class="page-inner-content">
                 <h3 class="section-title">Últimos Produtos</h3>
                 <div class="subtitle-underline"></div>
 
                 <div class="cols cols-4">
-                    <!-- Repetição de produtos -->
-                    <div class="product">
+                    <div class="product" data-product-id="5" data-name="Iphone 16 Pro Max 512GB" data-price="9289.99" data-image="/images/images/products/product-8.png">
                         <img src="/images/images/products/product-8.png" alt="Iphone 16 Pro Max" />
                         <p class="product-name">Iphone 16 Pro Max 512GB</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                         <p class="product-price">9289,99 <span>R$</span></p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                     </div>
 
-                    <div class="product">
+                    <div class="product" data-product-id="6" data-name="Galaxy S23 Ultra 1 TB" data-price="4132.41" data-image="/images/images/products/product-9.png">
                         <img src="/images/images/products/product-9.png" alt="Galaxy S23 Ultra" />
                         <p class="product-name">Galaxy S23 Ultra 1 TB</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                         <p class="product-price">4132,41 <span>R$</span></p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                     </div>
 
-                    <div class="product">
+                    <div class="product" data-product-id="7" data-name="Asus ROG Phone 3 Gamer" data-price="2820.00" data-image="/images/images/products/product-10.png">
                         <img src="/images/images/products/product-10.png" alt="Asus ROG Phone 3" />
                         <p class="product-name">Asus ROG Phone 3 Gamer</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                         <p class="product-price">2820,00 <span>R$</span></p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                     </div>
 
-                    <div class="product">
+                    <div class="product" data-product-id="8" data-name="Xiaomi 13 Ultra" data-price="5225.35" data-image="/images/images/products/product-11.png">
                         <img src="/images/images/products/product-11.png" alt="Xiaomi 13 Ultra" />
                         <p class="product-name">Xiaomi 13 Ultra</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
                         <p class="product-price">5225,35 <span>R$</span></p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                     </div>
                 </div>
 
                 <div class="cols cols-4">
-                    <div class="product">
+                    <div class="product" data-product-id="9" data-name="XBOX Series X 1 TB" data-price="2347.99" data-image="/images/images/products/product-12.png">
                         <img src="/images/images/products/product-12.png" alt="XBOX Series X" />
                         <p class="product-name">XBOX Series X 1 TB</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                         <p class="product-price">2347,99 <span>R$</span></p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                     </div>
 
-                    <div class="product">
+                    <div class="product" data-product-id="10" data-name="RacingWheel GT480 Ferrari" data-price="1132.41" data-image="/images/images/products/product-13.png">
                         <img src="/images/images/products/product-13.png" alt="RacingWheel GT480" />
                         <p class="product-name">RacingWheel GT480 Ferrari</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                         <p class="product-price">1132,41 <span>R$</span></p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                     </div>
 
-                    <div class="product">
+                    <div class="product" data-product-id="11" data-name="Console Playstation 5 Slim" data-price="420.00" data-image="/images/images/products/product-14.png">
                         <img src="/images/images/products/product-14.png" alt="Playstation 5 Slim" />
                         <p class="product-name">Console Playstation 5 Slim</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                         <p class="product-price">420,00 <span>R$</span></p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                     </div>
 
-                    <div class="product">
+                    <div class="product" data-product-id="12" data-name="PC Gamer RTX 3090 TI + Ryzen 7" data-price="631.25" data-image="/images/images/products/product-15.png">
                         <img src="/images/images/products/product-15.png" alt="PC Gamer RTX 3090" />
                         <p class="product-name">PC Gamer RTX 3090 TI + Ryzen 7</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
                         <p class="product-price">631,25 <span>R$</span></p>
+                        <button class="add-to-cart-button">Adicionar ao Carrinho</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Seção exclusiva -->
         <div class="gray-background">
             <div class="header-inner-content">
                 <div class="header-bottom-side exclusive-container">
                     <div class="header-bottom-side-left">
                         <h2>Xiaomi Smart Band 4</h2>
                         <p>
-                            O Mi Smart Band 4 tem uma tela AMOLED 39.9% maior que o Mi Band 3, 
+                            O Mi Smart Band 4 tem uma tela AMOLED 39.9% maior que o Mi Band 3,
                             tela completamente digital com brilho ajustável, de tal modo
                             que tudo é claro ao máximo!
                         </p>
@@ -206,7 +317,6 @@
             </div>
         </div>
 
-        <!-- Seção de depoimentos -->
         <div>
             <div class="page-inner-content">
                 <div class="testimonials">
@@ -241,14 +351,11 @@
                 </div>
             </div>
         </div>
-
     </main>
 
-    <!-- Rodapé -->
     <footer class="gray-background">
         <div class="page-inner-content footer-content">
-            
-            <!-- Download de aplicativos -->
+
             <div class="download-options">
                 <p>Baixe nosso Aplicativo</p>
                 <p>Disponível para Android e IOS</p>
@@ -258,13 +365,11 @@
                 </div>
             </div>
 
-            <!-- Logo e descrição -->
             <div class="logo-footer">
                 <h1 class="logo">LUK<span>STORE</span></h1>
                 <p>Esse site é meramente ilustrativo, sem o objetivo de vender algo, apenas para Desenvolvimento Web</p>
             </div>
 
-            <!-- Links úteis -->
             <div class="links-footer">
                 <h3>Links úteis</h3>
                 <ul>
@@ -283,15 +388,110 @@
         </div>
     </footer>
 
-    <!-- Script para toggle do menu -->
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-modal">
+            <span class="close-button" id="close-cart-button">&times;</span>
+            <h2>Seu Carrinho de Compras</h2>
+            <div class="cart-items" id="cart-items-container">
+                <p>Seu carrinho está vazio.</p>
+            </div>
+            <div class="cart-total" id="cart-total">
+                Total: 0,00 R$
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Seleção de elementos DOM
         const menuBtn = document.querySelector('.menu-button');
         const navList = document.querySelector('nav ul');
 
+        // Event listener para o botão do menu (responsividade)
         menuBtn.addEventListener('click', () => {
-            navList.classList.toggle('active');
+            navList.classList.toggle('active'); // Adiciona/remove a classe 'active' para exibir/ocultar o menu
         });
-    </script>
 
+        // Funcionalidade do Carrinho de Compras
+        const cartIcon = document.getElementById('cart-icon');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const closeCartButton = document.getElementById('close-cart-button');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartTotal = document.getElementById('cart-total');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+
+        let cart = []; // Array para armazenar os itens do carrinho
+
+        // Função para abrir o carrinho
+        cartIcon.addEventListener('click', (event) => {
+            event.preventDefault(); // Previne o comportamento padrão do link
+            renderCart(); // Renderiza os itens do carrinho
+            cartOverlay.style.display = 'flex'; // Exibe o overlay do carrinho
+        });
+
+        // Função para fechar o carrinho
+        closeCartButton.addEventListener('click', () => {
+            cartOverlay.style.display = 'none'; // Oculta o overlay do carrinho
+        });
+
+        // Fecha o carrinho ao clicar fora do modal
+        cartOverlay.addEventListener('click', (event) => {
+            if (event.target === cartOverlay) {
+                cartOverlay.style.display = 'none';
+            }
+        });
+
+        // Função para adicionar produto ao carrinho
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const productElement = event.target.closest('.product'); // Pega o elemento do produto pai
+                const productId = productElement.dataset.productId;
+                const productName = productElement.dataset.name;
+                const productPrice = parseFloat(productElement.dataset.price);
+                const productImage = productElement.dataset.image;
+
+                const existingItem = cart.find(item => item.id === productId); // Verifica se o item já existe no carrinho
+
+                if (existingItem) {
+                    existingItem.quantity++; // Se existir, incrementa a quantidade
+                } else {
+                    // Se não existir, adiciona o novo item ao carrinho
+                    cart.push({
+                        id: productId,
+                        name: productName,
+                        price: productPrice,
+                        image: productImage,
+                        quantity: 1
+                    });
+                }
+                alert(`${productName} adicionado ao carrinho!`); // Confirmação simples
+                renderCart(); // Atualiza a exibição do carrinho imediatamente
+            });
+        });
+
+        // Função para renderizar os itens do carrinho no modal
+        function renderCart() {
+            cartItemsContainer.innerHTML = ''; // Limpa os itens anteriores
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Seu carrinho está vazio.</p>';
+            } else {
+                cart.forEach(item => {
+                    const cartItemDiv = document.createElement('div');
+                    cartItemDiv.classList.add('cart-item');
+                    cartItemDiv.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <p>${item.name}</p>
+                            <p class="cart-item-price">${item.price.toFixed(2).replace('.', ',')} R$ x ${item.quantity}</p>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemDiv);
+                    total += item.price * item.quantity; // Calcula o total
+                });
+            }
+            cartTotal.textContent = `Total: ${total.toFixed(2).replace('.', ',')} R$`; // Atualiza o total exibido
+        }
+    </script>
 </body>
 </html>
