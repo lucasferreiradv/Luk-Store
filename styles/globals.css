@@ -309,6 +309,102 @@ main {
     text-align: center;
 }
 
+/* Estilos para o Dropdown de Login */
+.account-dropdown-container {
+    position: relative; /* Essencial para o posicionamento do dropdown */
+}
+
+.login-dropdown {
+    display: none; /* Oculto por padrão */
+    position: absolute;
+    top: 100%; /* Posiciona o dropdown abaixo do link "Conta" */
+    right: 0; /* Alinha o dropdown à direita do link "Conta" */
+    background-color: #fff;
+    min-width: 250px; /* Largura mínima do dropdown */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1001; /* Garante que o dropdown fique acima de outros elementos */
+    padding: 15px;
+    border-radius: 5px;
+    box-sizing: border-box; /* Garante que padding não aumente o tamanho total */
+}
+
+.login-dropdown.active {
+    display: block; /* Exibe o dropdown quando a classe 'active' é adicionada */
+}
+
+.login-dropdown h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.login-dropdown .form-group {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.login-dropdown label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.login-dropdown input[type="text"],
+.login-dropdown input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-dropdown .login-button {
+    background-color: #ff523b;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.login-dropdown .login-button:hover {
+    background-color: #e04a2e;
+}
+
+.login-dropdown .register-link {
+    margin-top: 15px;
+    font-size: 0.8em;
+    color: #666;
+    text-align: center;
+}
+
+.login-dropdown .register-link a {
+    color: #ff523b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-dropdown .register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para o nome do usuário logado */
+#logged-in-username {
+    color: #ff523b; /* Cor de destaque para o nome */
+    font-weight: bold;
+    padding: 0 10px; /* Espaçamento ao redor do nome */
+    cursor: pointer; /* Indica que é clicável (para abrir o dropdown) */
+}
+
+
+
  /* Personalização do "Adicionar ao Carrinho" e compras */
 
  .cart-overlay {
@@ -423,6 +519,30 @@ main {
     background-color: #e53935;
 }
 
+.remove-from-cart-button {
+    background-color: #dc3545; /* Fundo Vermelho*/
+    color: white;
+    padding: 1px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap; 
+}
+
+.remove-from-cart-button:hover {
+    background-color: #c82333;
+}
+
+.cart-total {
+    text-align: right;
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+
 /* Personalização da aba "Sobre" */
 .about-section {
     padding: 50px 0;
@@ -527,6 +647,17 @@ color: #ddd;
     .copyright {
         font-size: 0.8rem;
     }
+
+    /* Estilos para o nome do usuário logado */
+    #logged-in-username {
+    color: #ff523b; /* Cor de destaque para o nome */
+    font-weight: bold;
+    padding: 0 10px; /* Espaçamento ao redor do nome */
+    cursor: pointer; /* Indica que é clicável (para abrir o dropdown) */
+}
+    
+
+
 }
 
 /* Telas até 768px */
@@ -586,6 +717,15 @@ color: #ddd;
         max-width: 300px;
     }
 
-  
+    @media (max-width: 768px) {
+        .login-dropdown {
+            position: static; /* No mobile, pode ser melhor que ele flua normalmente */
+            width: 100%; /* Ocupa a largura total no menu mobile */
+            box-shadow: none; /* Remove a sombra no mobile */
+            border-radius: 0;
+            padding: 10px 0; /* Ajuste o padding conforme necessário */
+    }
+
+}
     
 }

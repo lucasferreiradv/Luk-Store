@@ -21,11 +21,27 @@
                     <li><a href="#products">Produtos</a></li>
                     <li><a href="#about">Sobre</a></li>
                     <li><a href="#contact">Contatos</a></li>
-                    <li><a href="account">Conta</a></li>
+                    <li class="account-dropdown-container">
+                        <span id="logged-in-username" style="display: none;"></span> 
+                        <a href="#" id="account-link">Conta</a>
+                        <div class="login-dropdown" id="login-dropdown">
+                            <h3>Login</h3>
+                            <form class="login-form" id="login-form"> <div class="form-group">
+                                    <label for="dropdown-username">Usuário:</label>
+                                    <input type="text" id="dropdown-username" name="username" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dropdown-password">Senha:</label>
+                                    <input type="password" id="dropdown-password" name="password" required>
+                                </div>
+                                <button type="submit" class="login-button">Entrar</button>
+                                <p class="register-link">Não tem uma conta? <a href="#">Cadastre-se</a></p>
+                            </form>
+                            <button id="logout-button" class="login-button" style="display: none; margin-top: 10px;">Sair</button>
+                        </div>
+                    </li>
                 </ul>
             </nav>
-
-
             <div class="nav-icon-container">
                 <a href="#" class="cart-link" id="cart-icon">
                     <img src="/images/images/cart.png" alt="Carrinho de Compras">
@@ -306,91 +322,131 @@
     </div>
 
     <script>
-        // Seleção de elementos DOM
-        const menuBtn = document.querySelector('.menu-button');
-        const navList = document.querySelector('nav ul');
+               // Seleção de elementos DOM
+const menuBtn = document.querySelector('.menu-button');
+const navList = document.querySelector('nav ul');
+const accountLink = document.getElementById('account-link');
+const loginDropdown = document.getElementById('login-dropdown');
 
-        // Event listener para o botão do menu (responsividade)
-        menuBtn.addEventListener('click', () => {
-            navList.classList.toggle('active'); // Adiciona/remove a classe 'active' para exibir/ocultar o menu
+const cartIcon = document.getElementById('cart-icon');
+const cartOverlay = document.getElementById('cart-overlay');
+const closeCartButton = document.getElementById('close-cart-button');
+const cartItemsContainer = document.getElementById('cart-items-container');
+const cartTotal = document.getElementById('cart-total');
+const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+
+let cart = []; // Array para armazenar os itens do carrinho
+
+// Event listener para o botão do menu (responsividade)
+menuBtn.addEventListener('click', () => {
+    navList.classList.toggle('active'); // Adiciona/remove a classe 'active' para exibir/ocultar o menu
+    // Se o menu responsivo for aberto, feche o dropdown de login
+    if (navList.classList.contains('active')) {
+        loginDropdown.classList.remove('active');
+    }
+});
+
+// Event listener para o link "Conta" para alternar o dropdown de login
+accountLink.addEventListener('click', (event) => {
+    event.preventDefault(); // Previne o comportamento padrão do link
+    loginDropdown.classList.toggle('active'); // Alterna a classe 'active'
+});
+
+// Fecha o dropdown se o usuário clicar fora dele
+document.addEventListener('click', (event) => {
+    // Verifica se o clique não foi no link "Conta" e nem dentro do dropdown
+    if (!accountLink.contains(event.target) && !loginDropdown.contains(event.target) && !menuBtn.contains(event.target)) {
+        loginDropdown.classList.remove('active');
+        navList.classList.remove('active'); // Também fecha o menu responsivo se estiver aberto
+    }
+});
+
+
+// Funcionalidade do Carrinho de Compras
+
+// Função para abrir o carrinho
+cartIcon.addEventListener('click', (event) => {
+    event.preventDefault(); // Previne o comportamento padrão do link
+    renderCart(); // Renderiza os itens do carrinho
+    cartOverlay.style.display = 'flex'; // Exibe o overlay do carrinho
+    // Se o carrinho for aberto, feche o dropdown de login
+    loginDropdown.classList.remove('active');
+});
+
+// Função para fechar o carrinho
+closeCartButton.addEventListener('click', () => {
+    cartOverlay.style.display = 'none';
+});
+
+// Função para adicionar item ao carrinho
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const productElement = e.target.closest('.product');
+        const productId = productElement.getAttribute('data-product-id');
+        const productName = productElement.getAttribute('data-name');
+        const productPrice = parseFloat(productElement.getAttribute('data-price'));
+        const productImage = productElement.getAttribute('data-image');
+
+        // Verifica se o produto já está no carrinho
+        const existingProduct = cart.find(item => item.id === productId);
+
+        if (existingProduct) {
+            existingProduct.quantity += 1;
+        } else {
+            cart.push({
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                quantity: 1
+            });
+        }
+        alert(`${productName} adicionado ao carrinho!`);
+    });
+});
+
+// Função para remover item do carrinho
+function removeItemFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    renderCart(); // Renderiza o carrinho novamente após a remoção
+}
+
+// Função para renderizar o carrinho
+function renderCart() {
+    cartItemsContainer.innerHTML = ''; // Limpa o conteúdo anterior
+    let total = 0;
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p>Seu carrinho está vazio.</p>';
+    } else {
+        cart.forEach(item => {
+            total += item.price * item.quantity;
+
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item');
+            itemElement.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-item-details">
+                    <p>${item.name}</p>
+                    <p class="cart-item-price">${item.price.toFixed(2)} R$</p>
+                    <p>Quantidade: ${item.quantity}</p>
+                    <button class="remove-from-cart-button" data-product-id="${item.id}">Remover</button>
+                </div>
+            `;
+            cartItemsContainer.appendChild(itemElement);
         });
 
-        // Funcionalidade do Carrinho de Compras
-        const cartIcon = document.getElementById('cart-icon');
-        const cartOverlay = document.getElementById('cart-overlay');
-        const closeCartButton = document.getElementById('close-cart-button');
-        const cartItemsContainer = document.getElementById('cart-items-container');
-        const cartTotal = document.getElementById('cart-total');
-        const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
-
-        let cart = []; // Array para armazenar os itens do carrinho
-
-        // Função para abrir o carrinho
-        cartIcon.addEventListener('click', (event) => {
-            event.preventDefault(); // Previne o comportamento padrão do link
-            renderCart(); // Renderiza os itens do carrinho
-            cartOverlay.style.display = 'flex'; // Exibe o overlay do carrinho
-        });
-
-        // Função para fechar o carrinho
-        closeCartButton.addEventListener('click', () => {
-            cartOverlay.style.display = 'none';
-        });
-
-        // Função para adicionar item ao carrinho
-        addToCartButtons.forEach(button => {
+        // Adiciona event listeners para os botões de remover após renderizar
+        document.querySelectorAll('.remove-from-cart-button').forEach(button => {
             button.addEventListener('click', (e) => {
-                const productElement = e.target.closest('.product');
-                const productId = productElement.getAttribute('data-product-id');
-                const productName = productElement.getAttribute('data-name');
-                const productPrice = parseFloat(productElement.getAttribute('data-price'));
-                const productImage = productElement.getAttribute('data-image');
-
-                // Verifica se o produto já está no carrinho
-                const existingProduct = cart.find(item => item.id === productId);
-
-                if (existingProduct) {
-                    existingProduct.quantity += 1;
-                } else {
-                    cart.push({
-                        id: productId,
-                        name: productName,
-                        price: productPrice,
-                        image: productImage,
-                        quantity: 1
-                    });
-                }
-                alert(`${productName} adicionado ao carrinho!`);
+                const productIdToRemove = e.target.getAttribute('data-product-id');
+                removeItemFromCart(productIdToRemove);
             });
         });
+    }
 
-        // Função para renderizar o carrinho
-        function renderCart() {
-            cartItemsContainer.innerHTML = ''; // Limpa o conteúdo anterior
-            let total = 0;
-
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p>Seu carrinho está vazio.</p>';
-            } else {
-                cart.forEach(item => {
-                    total += item.price * item.quantity;
-
-                    const itemElement = document.createElement('div');
-                    itemElement.classList.add('cart-item');
-                    itemElement.innerHTML = `
-                        <img src="${item.image}" alt="${item.name}">
-                        <div class="cart-item-details">
-                            <p>${item.name}</p>
-                            <p class="cart-item-price">${item.price.toFixed(2)} R$</p>
-                            <p>Quantidade: ${item.quantity}</p>
-                        </div>
-                    `;
-                    cartItemsContainer.appendChild(itemElement);
-                });
-            }
-
-            cartTotal.innerText = `Total: ${total.toFixed(2)} R$`;
-        }
+    cartTotal.innerText = `Total: ${total.toFixed(2)} R$`;
+}
     </script>
 
 </body>
