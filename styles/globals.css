@@ -287,7 +287,13 @@ main {
 
 .logo-footer {
     text-align: center;
+    margin-left: 120px; /* Move o conteúdo 20px para a direita */
 }
+
+.links-footer {
+    margin-left: 120px; /* Ajuste para mover para a direita */
+    text-align: left;
+}    
 
 .links-footer h3 {
     color: #fff;
@@ -301,6 +307,7 @@ main {
 .links-footer ul li {
     margin-bottom: 0.5rem;
     cursor: pointer;
+    
 }
 
 .copyright {
@@ -584,8 +591,7 @@ text-decoration: none;
 .navbar nav ul li a:hover {
 color: #ddd; 
 }
-
-
+  
 
 /* ====== Responsividade ====== */
 
