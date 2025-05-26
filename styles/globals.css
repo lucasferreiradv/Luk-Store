@@ -553,7 +553,7 @@ main {
 .product-img, 
 .product img, 
 .cart-item img {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0px 2px rgba(0, 0, 0, 0.2);
 
 }
 
