@@ -549,6 +549,14 @@ main {
     border-top: 1px solid #eee;
 }
 
+/* ====== Sombra nas Imagens ====== */
+.product-img, 
+.product img, 
+.cart-item img {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
 
 /* Personalização da aba "Sobre" */
 .about-section {
